@@ -1,0 +1,12 @@
+input {
+    height: 22px;
+    width: 200px;
+}
+
+button {
+    height: 27px;
+}
+
+li {
+    display: inline;
+}
