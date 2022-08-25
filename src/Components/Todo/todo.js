@@ -64,7 +64,6 @@ class AddTodo extends Component {
         })
 
 
-        // todos[].isEdit = false
         todos[index].isEdit = true
         updatedVal = todos[index].title
         this.setState({
@@ -103,7 +102,7 @@ class AddTodo extends Component {
                 </form>
                 <br />
                 <br />
-                <RenderTodos state={this.state} />
+                <RenderTodos editFunction={this.editTodoValue} state={this.state} />
                 {/* <div>{this.state.todos.map((todo, index) => {
                     return <div key={index}>
                         <li style={{ fontWeight: "bold" }}>{index + 1}: </li>
