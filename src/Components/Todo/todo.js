@@ -20,11 +20,6 @@ class AddTodo extends Component {
         })
     }
 
-    editTodoValue = (e) => {
-        this.setState({
-            updatedVal: e.target.value
-        })
-    }
 
 
     addTodo = (e) => {
@@ -47,52 +42,6 @@ class AddTodo extends Component {
     }
 
 
-    deleteTodo(index) {
-        let { todos } = this.state
-        todos.splice(index, 1)
-        this.setState({
-            todos: todos
-        })
-    }
-
-    editTodoInput(index) {
-        let { todos, updatedVal } = this.state
-
-        todos.map((value, index) => {
-            return (todos[index].isEdit = false)
-
-        })
-
-
-        todos[index].isEdit = true
-        updatedVal = todos[index].title
-        this.setState({
-            todos: todos,
-            updatedVal: updatedVal
-        })
-    }
-    cancel = (index) => {
-        let { todos } = this.state
-
-        todos[index].isEdit = false
-
-        this.setState({
-            todos: todos
-        })
-    }
-
-
-
-    updateTodo = (index) => {
-        let { todos, updatedVal } = this.state
-        todos[index].title = updatedVal
-        todos[index].isEdit = false
-        this.setState({
-            todos: todos
-        })
-
-    }
-
     render() {
         return (
             <div>
@@ -102,17 +51,7 @@ class AddTodo extends Component {
                 </form>
                 <br />
                 <br />
-                <RenderTodos editFunction={this.editTodoValue} state={this.state} />
-                {/* <div>{this.state.todos.map((todo, index) => {
-                    return <div key={index}>
-                        <li style={{ fontWeight: "bold" }}>{index + 1}: </li>
-                        <li>{todo.isEdit ? <input onChange={(e) => this.editTodoValue(e)} defaultValue={todo.title} type="text" /> : todo.title}</li>
-                        <li>{todo.isEdit ? <button onClick={() => this.updateTodo(index)}>Update</button> : <button onClick={() => this.editTodoInput(index)}>Edit</button>}</li>
-                        <li>{todo.isEdit ? <button onClick={() => this.cancel(index)}>Cancel</button> : <button onClick={() => this.deleteTodo(index)}>Delete</button>}</li>
-                        <br />
-                        <br />
-                    </div>
-                })}</div> */}
+                <RenderTodos state={this.state} />
             </div>
         )
     }
