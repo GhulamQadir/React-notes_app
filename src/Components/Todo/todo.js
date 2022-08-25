@@ -22,6 +22,7 @@ class AddTodo extends Component {
     addTodo = (e) => {
         e.preventDefault();
         let { todos, newTodo } = this.state
+        let addNewTodo = { title: newTodo, isEdit: false }
 
 
         if (newTodo === "") {
@@ -30,19 +31,38 @@ class AddTodo extends Component {
         }
         else {
             this.setState({
-                todos: [...todos, newTodo],
+                todos: [...todos, addNewTodo],
                 newTodo: ""
             })
+            console.log(todos)
         }
     }
 
 
-    deleteTodo(e) {
+    deleteTodo(index) {
         let { todos } = this.state
-        todos.splice(e.index, 1)
+        todos.splice(index, 1)
         this.setState({
             todos: todos
         })
+        console.log(todos)
+    }
+
+    editTodo(index) {
+        let { todos } = this.state
+        // console.log(index)
+        // let updateVal = prompt("Enter updated value", todos[index].title)
+
+        // todos[index].title = updateVal
+        // this.setState({
+        //     todos: todos
+        // })
+
+        todos[index].isEdit = true
+        this.setState({
+            todo: todos
+        })
+        console.log(todos)
     }
 
 
@@ -55,12 +75,12 @@ class AddTodo extends Component {
                 </form>
                 <br />
                 <br />
-                <div>{this.state.todos.map((value, index) => {
+                <div>{this.state.todos.map((todo, index) => {
                     return <div key={index}>
                         <li style={{ fontWeight: "bold" }}>{index + 1}: </li>
-                        <li>{value}</li>
-                        <li><button>Edit</button></li>
-                        <li><button onClick={(e) => this.deleteTodo({ index })}>Delete</button></li>
+                        <li>{todo.isEdit === true ? <input type="text" /> : todo.title}</li>
+                        <li><button onClick={() => this.editTodo(index)}>{todo.isEdit === true ? "Update" : "Edit"}</button></li>
+                        <li><button onClick={() => this.deleteTodo(index)}>{todo.isEdit === true ? "Cancel" : "Delete"}</button></li>
                         <br />
                         <br />
                     </div>
