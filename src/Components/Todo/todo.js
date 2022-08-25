@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import RenderTodos from "../render_todos/render-todos";
 import './todo.css'
 
 
@@ -102,7 +103,8 @@ class AddTodo extends Component {
                 </form>
                 <br />
                 <br />
-                <div>{this.state.todos.map((todo, index) => {
+                <RenderTodos state={this.state} />
+                {/* <div>{this.state.todos.map((todo, index) => {
                     return <div key={index}>
                         <li style={{ fontWeight: "bold" }}>{index + 1}: </li>
                         <li>{todo.isEdit ? <input onChange={(e) => this.editTodoValue(e)} defaultValue={todo.title} type="text" /> : todo.title}</li>
@@ -111,7 +113,7 @@ class AddTodo extends Component {
                         <br />
                         <br />
                     </div>
-                })}</div>
+                })}</div> */}
             </div>
         )
     }
