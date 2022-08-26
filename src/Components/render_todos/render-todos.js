@@ -5,7 +5,7 @@ import React, { Component } from "react";
 
 class RenderTodos extends Component {
 
-    editTodoValue = (e) => {
+    editTodoValueOnchange = (e) => {
         this.props.state.updatedVal = e.target.value
         this.setState({
             updatedVal: this.props.state.updatedVal
@@ -24,19 +24,17 @@ class RenderTodos extends Component {
     editTodoInput(index) {
         let { todos, updatedVal } = this.props.state
 
-        todos.map((value, index) => {
-            return (todos[index].isEdit = false)
-
-        })
-
         todos[index].isEdit = true
-        updatedVal = todos[index].title
+        this.props.state.updatedVal = todos[index].title
         this.setState({
             todos: todos,
+            updatedVal: updatedVal
         })
     }
+
+
     cancel = (index) => {
-        let { todos } = this.state
+        let { todos } = this.props.state
 
         todos[index].isEdit = false
 
@@ -47,13 +45,18 @@ class RenderTodos extends Component {
 
     updateTodo = (index) => {
         let { todos, updatedVal } = this.props.state
-        todos[index].title = updatedVal
-        this.setState({
-            todos: todos,
-            updatedVal: ""
-        })
 
-        todos[index].isEdit = false
+        if (updatedVal.length < 1) {
+            alert("please enter some value")
+            return;
+        }
+        else {
+            todos[index].title = updatedVal
+            todos[index].isEdit = false
+            this.setState({
+                todos: todos,
+            })
+        }
     }
 
 
@@ -63,19 +66,21 @@ class RenderTodos extends Component {
             <div>
                 <h1>Render todos component</h1>
 
-                <div>{this.props.state.todos.map((todo, index) => {
-                    return <div key={index}>
-                        <li style={{ fontWeight: "bold" }}>{index + 1}: </li>
-                        <li>{todo.isEdit ? <input onChange={(e) => this.editTodoValue(e)} defaultValue={todo.title} type="text" /> : todo.title}</li>
+                <div>
+                    {this.props.state.todos.map((todo, index) => {
+                        return <div key={index}>
+                            <li style={{ fontWeight: "bold" }}>{index + 1}: </li>
+                            <li>{todo.isEdit ? <input onChange={(e) => this.editTodoValueOnchange(e)} defaultValue={todo.title} type="text" /> : todo.title}</li>
 
-                        <li>{todo.isEdit ? <button onClick={() => this.updateTodo(index)}>Update</button> : <button onClick={() => this.editTodoInput(index)}>Edit</button>}</li>
+                            <li>{todo.isEdit ? <button onClick={() => this.updateTodo(index)}>Update</button> : <button onClick={() => this.editTodoInput(index)}>Edit</button>}</li>
 
-                        <li>{todo.isEdit ? <button onClick={() => this.cancel(index)}>Cancel</button> : <button onClick={() => this.deleteTodo(index)}>Delete</button>}</li>
+                            <li>{todo.isEdit ? <button onClick={() => this.cancel(index)}>Cancel</button> : <button onClick={() => this.deleteTodo(index)}>Delete</button>}</li>
 
-                        <br />
-                        <br />
-                    </div>
-                })}</div>
+                            <br />
+                            <br />
+                        </div>
+                    })}
+                </div>
             </div>
         )
     }
