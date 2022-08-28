@@ -1,0 +1,36 @@
+.add_todo_div {
+    width: 50%;
+    margin: auto;
+    margin-top: 30px;
+    padding: 20px 17px 20px 22px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 8px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.add_todo_field {
+    height: 25px;
+    width: 85%;
+    border: 1px solid rgb(210, 208, 208);
+    padding: 3px 3px 3px 7px;
+}
+
+
+.add_task_btn {
+    height: 33px;
+    border: none;
+    background-color: navy;
+    color: white;
+    width: 95px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.add_todo_field:focus {
+    height: 23px;
+    outline: 1px solid navy;
+}
+
+li {
+    display: inline;
+}

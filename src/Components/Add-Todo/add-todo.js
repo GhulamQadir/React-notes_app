@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import RenderTodos from "../render_todos/render-todos";
-import './todo.css'
+import './add-todo.css'
 
 
 class AddTodo extends Component {
@@ -45,14 +45,17 @@ class AddTodo extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={(e) => this.addTodo(e)}>
-                    <input value={this.state.newTodo} onChange={(e) => this.todoValueOnChange(e)} placeholder="Add todo" type="text" />
-                    <button onClick={this.addTodo}>Add Todo</button>
-                </form>
+                <div className="add_todo_div">
+                    <form onSubmit={(e) => this.addTodo(e)}>
+                        <input className="add_todo_field" value={this.state.newTodo} onChange={(e) => this.todoValueOnChange(e)} placeholder="Enter task" type="text" />
+                        <button className="add_task_btn" onClick={this.addTodo}>Add task</button>
+                    </form>
+                </div>
                 <br />
                 <br />
+
                 <RenderTodos state={this.state} />
-            </div>
+            </div >
         )
     }
 }
