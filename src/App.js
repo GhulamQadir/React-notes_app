@@ -1,12 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import AddTodo from './Components/Add-Todo/add-todo';
+import AppRouter from './config/Router';
 
 function App() {
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>Task App</h1>
-      <AddTodo />
+      <h1 style={{ textAlign: "center" }}>Notes App</h1>
+      <AppRouter />
     </div>
   );
 }

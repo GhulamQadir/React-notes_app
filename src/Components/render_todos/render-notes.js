@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 
 
 
-class RenderTodos extends Component {
+class RenderNotes extends Component {
 
     editTodoValueOnchange = (e) => {
         this.props.state.updatedVal = e.target.value
@@ -64,17 +65,17 @@ class RenderTodos extends Component {
 
         return (
             <div>
-                <h1>Render todos component</h1>
+                <h1>Render Notes component</h1>
 
                 <div>
-                    {this.props.state.todos.map((todo, index) => {
+                    {this.props.state.todos.map((note, index) => {
                         return <div key={index}>
                             <li style={{ fontWeight: "bold" }}>{index + 1}: </li>
-                            <li>{todo.isEdit ? <input onChange={(e) => this.editTodoValueOnchange(e)} defaultValue={todo.title} type="text" /> : todo.title}</li>
+                            <li>{note.isEdit ? <input onChange={(e) => this.editTodoValueOnchange(e)} defaultValue={note.title} type="text" /> : note.title}</li>
 
-                            <li>{todo.isEdit ? <button onClick={() => this.updateTodo(index)}>Update</button> : <button onClick={() => this.editTodoInput(index)}>Edit</button>}</li>
+                            <li>{note.isEdit ? <button onClick={() => this.updateTodo(index)}>Update</button> : <button onClick={() => this.editTodoInput(index)}>Edit</button>}</li>
 
-                            <li>{todo.isEdit ? <button onClick={() => this.cancel(index)}>Cancel</button> : <button onClick={() => this.deleteTodo(index)}>Delete</button>}</li>
+                            <li>{note.isEdit ? <button onClick={() => this.cancel(index)}>Cancel</button> : <button onClick={() => this.deleteTodo(index)}>Delete</button>}</li>
 
                             <br />
                             <br />
@@ -86,4 +87,4 @@ class RenderTodos extends Component {
     }
 }
 
-export default RenderTodos;
+export default withRouter(RenderNotes);
