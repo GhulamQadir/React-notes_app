@@ -63,8 +63,12 @@ class RenderNotes extends Component {
 
     viewNote = (index) => {
         let note = this.props.state.todos[index]
-        // console.log(this.props.history)
         this.props.history.push({ pathname: '/note-details', state: { title: note.title } })
+    }
+
+
+    componentDidUpdate = () => {
+        localStorage.setItem('todos', JSON.stringify(this.props.state.todos))
     }
 
 

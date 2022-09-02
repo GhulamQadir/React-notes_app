@@ -13,7 +13,6 @@ class AddNote extends Component {
             updatedVal: ""
         }
     }
-
     todoValueOnChange(e) {
         this.setState({
             newTodo: e.target.value
@@ -41,6 +40,23 @@ class AddNote extends Component {
         }
     }
 
+
+    hello = () => {
+        let { todos } = this.state
+        todos = JSON.parse(localStorage.getItem('todos'))
+        if (!todos) {
+            todos = []
+        }
+    }
+
+    componentDidMount = () => {
+        this.setState({
+            todos: JSON.parse(localStorage.getItem('todos')),
+        })
+    }
+    componentDidUpdate = () => {
+        localStorage.setItem('todos', JSON.stringify(this.state.todos))
+    }
 
     render() {
         return (
