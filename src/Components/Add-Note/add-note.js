@@ -97,6 +97,9 @@ class AddNote extends Component {
                 </div> */}
 
 
+                <h1 style={{ textAlign: "center" }}>Notes App</h1>
+
+
                 {/* Modal */}
                 <div>
                     <Modal show={this.state.modalShow} >
@@ -106,10 +109,10 @@ class AddNote extends Component {
                         </Modal.Header>
                         <Modal.Body>
                             <br />
-                            <input name="title" value={this.state.newTodo} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Enter note title" type="text" />
+                            <input name="title" value={this.state.inputValues.title} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Enter note title" type="text" />
                             <br />
                             <br />
-                            <input name="description" value={this.state.newTodo} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Enter note description" type="text" />
+                            <input name="description" value={this.state.inputValues.description} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Enter note description" type="text" />
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={this.closeModal}>

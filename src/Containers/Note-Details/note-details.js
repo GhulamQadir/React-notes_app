@@ -11,7 +11,11 @@ class NoteDetails extends Component {
         return (
             <div style={{ textAlign: "center" }}>
                 <h1>Note details</h1>
-                <h3>{this.props.location.state.title}</h3>
+                <br />
+                <br />
+                <br />
+                <h4>{this.props.location.state.note.title}</h4>
+                <p>{this.props.location.state.note.description}</p>
             </div>
         )
     }
