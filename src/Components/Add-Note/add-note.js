@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import RenderNotes from "../render_todos/render-notes";
 import './add-note.css'
 
@@ -61,4 +60,4 @@ class AddNote extends Component {
     }
 }
 
-export default withRouter(AddNote);
+export default AddNote;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import './render-notes.css'
 
 
 
@@ -60,6 +61,12 @@ class RenderNotes extends Component {
         }
     }
 
+    viewNote = (index) => {
+        let note = this.props.state.todos[index]
+        // console.log(this.props.history)
+        this.props.history.push({ pathname: '/note-details', state: { title: note.title } })
+    }
+
 
     render() {
 
@@ -69,7 +76,7 @@ class RenderNotes extends Component {
 
                 <div>
                     {this.props.state.todos.map((note, index) => {
-                        return <div key={index}>
+                        return <div className="note" key={index}>
                             <li style={{ fontWeight: "bold" }}>{index + 1}: </li>
                             <li>{note.isEdit ? <input onChange={(e) => this.editTodoValueOnchange(e)} defaultValue={note.title} type="text" /> : note.title}</li>
 
@@ -79,6 +86,7 @@ class RenderNotes extends Component {
 
                             <br />
                             <br />
+                            <button onClick={() => this.viewNote(index)}>View Note</button>
                         </div>
                     })}
                 </div>
