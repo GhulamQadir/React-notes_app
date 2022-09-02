@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import RenderNotes from "../render_todos/render-notes";
+import Modal from 'react-bootstrap/Modal';
 import './add-note.css'
+import { Button } from "react-bootstrap";
 
 
 class AddNote extends Component {
@@ -9,25 +11,35 @@ class AddNote extends Component {
         super()
         this.state = {
             todos: [],
-            newTodo: "",
-            updatedVal: ""
+            inputValues: {
+                title: "",
+                description: ""
+            },
+            updatedVal: "",
+            modalShow: false
         }
     }
-    todoValueOnChange(e) {
+
+
+    inputValuesOnChange(e) {
         this.setState({
-            newTodo: e.target.value
+            inputValues: {
+                ...this.state.inputValues,
+                [e.target.name]: e.target.value
+            }
         })
+
     }
 
 
 
-    addTodo = (e) => {
+    addNote = (e) => {
         e.preventDefault();
-        let { todos, newTodo } = this.state
-        let addNewTodo = { title: newTodo, isEdit: false }
+        let { todos, newTodo, inputValues } = this.state
+        let addNewTodo = { title: inputValues.title, description: inputValues.description, isEdit: false }
 
 
-        if (newTodo === "") {
+        if (inputValues.title === "" || inputValues.description === "") {
             alert("Please enter value")
             return;
         }
@@ -38,6 +50,7 @@ class AddNote extends Component {
             })
             console.log(todos)
         }
+        this.closeModal()
     }
 
 
@@ -58,15 +71,60 @@ class AddNote extends Component {
         localStorage.setItem('todos', JSON.stringify(this.state.todos))
     }
 
+
+    openModal = () => {
+        this.setState({
+            modalShow: true
+        })
+        console.log(this.state)
+    }
+
+    closeModal = () => {
+        this.setState({
+            modalShow: false
+        })
+        console.log(this.state)
+    }
+
     render() {
         return (
             <div>
-                <div className="add_todo_div">
+                {/* <div className="add_todo_div">
                     <form onSubmit={(e) => this.addTodo(e)}>
                         <input className="add_todo_field" value={this.state.newTodo} onChange={(e) => this.todoValueOnChange(e)} placeholder="Enter task" type="text" />
                         <button className="add_task_btn" onClick={this.addTodo}>Add Note</button>
                     </form>
+                </div> */}
+
+
+                {/* Modal */}
+                <div>
+                    <Modal show={this.state.modalShow} >
+                        <Modal.Header>
+                            <Modal.Title>Add Note</Modal.Title>
+                            <button onClick={this.closeModal}>X</button>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <br />
+                            <input name="title" value={this.state.newTodo} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Enter note title" type="text" />
+                            <br />
+                            <br />
+                            <input name="description" value={this.state.newTodo} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Enter note description" type="text" />
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={this.closeModal}>
+                                Close
+                            </Button>
+                            <Button variant="primary" onClick={this.addNote}>
+                                Save Note
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
+
+
+                <br />
+                <button onClick={this.openModal}>Create Note</button>
                 <br />
                 <br />
 
