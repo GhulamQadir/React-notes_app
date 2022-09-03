@@ -53,6 +53,41 @@ class NoteDetails extends Component {
         console.log(this.props.location.state)
     }
 
+
+
+    editDescripValueOnchange = (e) => {
+        let { updatedInputValues } = this.props.location.state
+
+        updatedInputValues.updatedDescription = e.target.value
+        this.setState({
+            updatedInputValues: {
+                updatedDescription: updatedInputValues.updatedDescription
+            }
+        })
+        console.log("updated=>>", updatedInputValues.updatedDescription)
+
+    }
+
+    editDescription = () => {
+        let { note, notes, index, updatedInputValues } = this.props.location.state
+        notes[index].isEditDescription = true
+        updatedInputValues.updatedDescription = notes[index].description
+        this.setState({
+            todos: notes,
+        })
+    }
+
+    updateDescription = () => {
+        let { note, notes, index, updatedInputValues } = this.props.location.state
+        note.description = updatedInputValues.updatedDescription
+        note.isEditDescription = false
+        this.setState({
+            notes: notes,
+        })
+        console.log(this.props.location.state)
+    }
+
+
     render() {
         let note = this.props.location.state.note
         console.log(this.props.location.state)
@@ -70,8 +105,8 @@ class NoteDetails extends Component {
                 <br />
                 <br />
                 <div className="editDivs">
-                    <p>{note.description}</p>
-                    <button className="editBtns">edit description</button>
+                    <li>{note.isEditDescription ? <input type="text" onChange={(e) => this.editDescripValueOnchange(e)} defaultValue={note.description} /> : <h4>{note.description}</h4>}</li>
+                    <li>{note.isEditDescription ? <button onClick={this.updateDescription} className="editBtns">Update Description</button> : <button onClick={this.editDescription} className="editBtns">edit description</button>}</li>
                 </div>
 
             </div>
