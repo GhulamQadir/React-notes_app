@@ -35,7 +35,7 @@ class AddNote extends Component {
 
     addNote = (e) => {
         e.preventDefault();
-        let { todos, newTodo, inputValues } = this.state
+        let { todos, inputValues } = this.state
         let addNewTodo = { title: inputValues.title, description: inputValues.description, isEdit: false }
 
 
@@ -46,20 +46,10 @@ class AddNote extends Component {
         else {
             this.setState({
                 todos: [...todos, addNewTodo],
-                newTodo: ""
             })
             console.log(todos)
         }
         this.closeModal()
-    }
-
-
-    hello = () => {
-        let { todos } = this.state
-        todos = JSON.parse(localStorage.getItem('todos'))
-        if (!todos) {
-            todos = []
-        }
     }
 
     componentDidMount = () => {
@@ -76,14 +66,12 @@ class AddNote extends Component {
         this.setState({
             modalShow: true
         })
-        console.log(this.state)
     }
 
     closeModal = () => {
         this.setState({
             modalShow: false
         })
-        console.log(this.state)
     }
 
     render() {

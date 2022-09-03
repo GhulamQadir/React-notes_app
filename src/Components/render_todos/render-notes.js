@@ -63,7 +63,7 @@ class RenderNotes extends Component {
 
     viewNote = (index) => {
         let note = this.props.state.todos[index]
-        this.props.history.push({ pathname: '/note-details', state: { note: note } })
+        this.props.history.push({ pathname: '/note-details', state: { note: note, index: index, notes: this.props.state.todos } })
     }
 
 
@@ -84,7 +84,7 @@ class RenderNotes extends Component {
                             <li style={{ fontWeight: "bold" }}>{index + 1}: </li>
                             <li>{note.isEdit ? <input onChange={(e) => this.editTodoValueOnchange(e)} defaultValue={note.title} type="text" /> : note.title}</li>
 
-                            <li>{note.isEdit ? <button onClick={() => this.updateTodo(index)}>Update</button> : <button onClick={() => this.editTodoInput(index)}>Edit</button>}</li>
+                            {/* <li>{note.isEdit ? <button onClick={() => this.updateTodo(index)}>Update</button> : <button onClick={() => this.editTodoInput(index)}>Edit</button>}</li> */}
 
                             <li>{note.isEdit ? <button onClick={() => this.cancel(index)}>Cancel</button> : <button onClick={() => this.deleteTodo(index)}>Delete</button>}</li>
 
