@@ -12,13 +12,13 @@ class NoteDetails extends Component {
         console.log(this.props.location.state)
     }
 
-    componentDidMount = () => {
-        let { notes } = this.props.location.state
+    // componentDidMount = () => {
+    //     let { notes } = this.props.location.state
 
-        this.setState({
-            notes: JSON.parse(localStorage.getItem('todos')),
-        })
-    }
+    //     this.setState({
+    //         todos: notes
+    //     })
+    // }
 
 
     editTodoValueOnchange = (e) => {
@@ -39,7 +39,7 @@ class NoteDetails extends Component {
         notes[index].isEditTitle = true
         updatedInputValues.updatedTitle = notes[index].title
         this.setState({
-            todos: notes,
+            notes: notes,
         })
     }
 
@@ -50,7 +50,7 @@ class NoteDetails extends Component {
         this.setState({
             notes: notes,
         })
-        console.log(this.props.location.state)
+        console.log("notes", notes)
     }
 
 
@@ -73,8 +73,9 @@ class NoteDetails extends Component {
         notes[index].isEditDescription = true
         updatedInputValues.updatedDescription = notes[index].description
         this.setState({
-            todos: notes,
+            notes: notes,
         })
+        console.log(notes)
     }
 
     updateDescription = () => {
@@ -85,6 +86,18 @@ class NoteDetails extends Component {
             notes: notes,
         })
         console.log(this.props.location.state)
+    }
+
+    deleteNote = () => {
+        let { notes, index } = this.props.location.state
+        this.props.location.state.notes.splice(index, 1)
+        this.setState({
+            notes: this.props.location.state.notes
+        })
+        console.log("dhsjh", notes)
+        localStorage.setItem('todos', JSON.stringify(this.props.location.state.notes))
+
+        // this.props.history.push('/')
     }
 
 
@@ -99,6 +112,9 @@ class NoteDetails extends Component {
                 <br />
                 <br />
                 <div className="editDivs">
+                    <button onClick={this.deleteNote}>Delete</button>
+                    <br />
+                    <br />
                     <li>{note.isEditTitle ? <input type="text" onChange={(e) => this.editTodoValueOnchange(e)} defaultValue={note.title} /> : <h4>{note.title}</h4>}</li>
                     <li>{note.isEditTitle ? <button onClick={this.updateTitle} className="editBtns">Update title</button> : <button onClick={this.editTitle} className="editBtns">edit title</button>}</li>
                 </div>
