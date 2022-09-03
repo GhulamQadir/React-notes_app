@@ -9,43 +9,56 @@ import './note-details.css'
 class NoteDetails extends Component {
     componentDidUpdate = () => {
         localStorage.setItem('todos', JSON.stringify(this.props.location.state.notes))
+        console.log(this.props.location.state)
+    }
+
+    componentDidMount = () => {
+        let { notes } = this.props.location.state
+
+        this.setState({
+            notes: JSON.parse(localStorage.getItem('todos')),
+        })
     }
 
 
     editTodoValueOnchange = (e) => {
-        console.log(e.target.value)
-        // this.props.location.state.updatedValues.updatedTitle = e.target.value
-        // this.setState({
-        //     updatedValues: {
-        //         updatedTitle: this.props.location.state.updatedValues.updateTitle
-        //     }
-        // })
+        let { updatedInputValues } = this.props.location.state
+
+        updatedInputValues.updatedTitle = e.target.value
+        this.setState({
+            updatedInputValues: {
+                updatedTitle: updatedInputValues.updateTitle
+            }
+        })
+        console.log("updated=>>", updatedInputValues.updatedTitle)
+
     }
 
     editTitle = () => {
-        let { notes, index } = this.props.location.state
+        let { note, notes, index, updatedInputValues } = this.props.location.state
         notes[index].isEditTitle = true
+        updatedInputValues.updatedTitle = notes[index].title
         this.setState({
             todos: notes,
         })
     }
 
-    // updateTitle = () => {
-    //     let { notes, index, updatedInputValues } = this.props.location.state
-    //     notes[index].title = updatedInputValues.updatedTitle
-    //     notes[index].isEditTitle = false
-    //     this.setState({
-    //         todos: notes,
-    //     })
-    // }
-    // editDescription = () => { }
+    updateTitle = () => {
+        let { note, notes, index, updatedInputValues } = this.props.location.state
+        note.title = updatedInputValues.updatedTitle
+        note.isEditTitle = false
+        this.setState({
+            notes: notes,
+        })
+        console.log(this.props.location.state)
+    }
 
     render() {
         let note = this.props.location.state.note
         console.log(this.props.location.state)
 
         return (
-            <div style={{ textAlign: "center" }}>
+            <div className="mainDiv" >
                 <h1>Note details</h1>
                 <br />
                 <br />
@@ -58,17 +71,9 @@ class NoteDetails extends Component {
                 <br />
                 <div className="editDivs">
                     <p>{note.description}</p>
-                    <button className="editBtns" onClick={<input type="text" />}>edit description</button>
+                    <button className="editBtns">edit description</button>
                 </div>
-                {/* <button onClick={() => {
-                    let { notes } = this.props.location.state
-                    notes[this.props.location.state.index].title = "updatedVal"
-                    notes[this.props.location.state.index].isEdit = false
-                    this.setState({
-                        todos: notes,
-                    })
-                    console.log("fdsfsd", notes)
-                }}>Edit Note</button> */}
+
             </div>
         )
     }
