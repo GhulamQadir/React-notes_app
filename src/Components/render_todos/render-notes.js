@@ -62,8 +62,9 @@ class RenderNotes extends Component {
     }
 
     viewNote = (index) => {
+        let { updatedInputValues, todos } = this.props.state
         let note = this.props.state.todos[index]
-        this.props.history.push({ pathname: '/note-details', state: { note: note, index: index, notes: this.props.state.todos } })
+        this.props.history.push({ pathname: '/note-details', state: { note: note, index: index, notes: todos, updatedInputValues: updatedInputValues } })
     }
 
 

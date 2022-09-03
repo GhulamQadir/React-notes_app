@@ -15,8 +15,11 @@ class AddNote extends Component {
                 title: "",
                 description: ""
             },
-            updatedVal: "",
-            modalShow: false
+            updatedInputValues: {
+                updatedTitle: "",
+                updatedDescription: ""
+            },
+            modalShow: false,
         }
     }
 
@@ -36,7 +39,7 @@ class AddNote extends Component {
     addNote = (e) => {
         e.preventDefault();
         let { todos, inputValues } = this.state
-        let addNewTodo = { title: inputValues.title, description: inputValues.description, isEdit: false }
+        let addNewTodo = { title: inputValues.title, description: inputValues.description, isEditTitle: false, isEditDescription: false }
 
 
         if (inputValues.title === "" || inputValues.description === "") {

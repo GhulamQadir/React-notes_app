@@ -1,0 +1,17 @@
+.editBtns {
+    float: right;
+}
+
+h4,
+p {
+    display: inline;
+}
+
+.editDivs {
+    padding: 20px;
+    background-color: aqua;
+}
+
+li {
+    list-style: none;
+}
