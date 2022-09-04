@@ -39,7 +39,7 @@ class AddNote extends Component {
     addNote = (e) => {
         e.preventDefault();
         let { todos, inputValues } = this.state
-        let addNewTodo = { title: inputValues.title, description: inputValues.description, isEditTitle: false, isEditDescription: false }
+        let addNewTodo = { title: inputValues.title, description: inputValues.description, isEditTitle: false, z: false }
 
 
         if (inputValues.title === "" || inputValues.description === "") {

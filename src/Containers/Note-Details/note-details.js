@@ -12,14 +12,6 @@ class NoteDetails extends Component {
         console.log(this.props.location.state)
     }
 
-    // componentDidMount = () => {
-    //     let { notes } = this.props.location.state
-
-    //     this.setState({
-    //         todos: notes
-    //     })
-    // }
-
 
     editTodoValueOnchange = (e) => {
         let { updatedInputValues } = this.props.location.state
@@ -30,8 +22,6 @@ class NoteDetails extends Component {
                 updatedTitle: updatedInputValues.updateTitle
             }
         })
-        console.log("updated=>>", updatedInputValues.updatedTitle)
-
     }
 
     editTitle = () => {
@@ -50,7 +40,6 @@ class NoteDetails extends Component {
         this.setState({
             notes: notes,
         })
-        console.log("notes", notes)
     }
 
 
@@ -75,7 +64,6 @@ class NoteDetails extends Component {
         this.setState({
             notes: notes,
         })
-        console.log(notes)
     }
 
     updateDescription = () => {
@@ -85,25 +73,20 @@ class NoteDetails extends Component {
         this.setState({
             notes: notes,
         })
-        console.log(this.props.location.state)
     }
 
     deleteNote = () => {
         let { notes, index } = this.props.location.state
-        this.props.location.state.notes.splice(index, 1)
-        this.setState({
-            notes: this.props.location.state.notes
-        })
-        console.log("dhsjh", notes)
+        notes.splice(index, 1)
+        this.props.history.replace('/')
         localStorage.setItem('todos', JSON.stringify(this.props.location.state.notes))
 
-        // this.props.history.push('/')
     }
 
 
     render() {
         let note = this.props.location.state.note
-        console.log(this.props.location.state)
+        // console.log(this.props.location.state.asdjk)
 
         return (
             <div className="mainDiv" >
