@@ -9,7 +9,17 @@ import './note-details.css'
 class NoteDetails extends Component {
     componentDidUpdate = () => {
         localStorage.setItem('todos', JSON.stringify(this.props.location.state.notes))
-        console.log(this.props.location.state)
+    }
+
+    componentDidMount = () => {
+        let { note, notes } = this.props.location.state
+
+        note.isEditTitle = false
+        note.isEditDescription = false
+
+        this.setState({
+            notes: notes
+        })
     }
 
 

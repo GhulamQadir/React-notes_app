@@ -46,7 +46,6 @@ class AddNote extends Component {
             return;
         }
         else {
-            debugger
             this.setState({
                 todos: [...todos, addNewTodo],
             })
@@ -61,7 +60,6 @@ class AddNote extends Component {
         })
     }
     componentDidUpdate = () => {
-        console.log(this.state.todos ?? [], "haaaaa")
         localStorage.setItem('todos', JSON.stringify(this.state.todos ?? []))
     }
 
