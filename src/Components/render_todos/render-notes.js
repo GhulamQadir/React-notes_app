@@ -74,13 +74,13 @@ class RenderNotes extends Component {
 
 
     render() {
-
+        console.log(this.props.state.todos)
         return (
             <div>
                 <h1>Render Notes component</h1>
 
                 <div>
-                    {this.props.state.todos.map((note, index) => {
+                    {this.props.state.todos && this.props.state.todos.map((note, index) => {
                         return <div className="note" key={index}>
                             <li style={{ fontWeight: "bold" }}>{index + 1}: </li>
                             <li>{note.isEdit ? <input onChange={(e) => this.editTodoValueOnchange(e)} defaultValue={note.title} type="text" /> : note.title}</li>
@@ -95,7 +95,7 @@ class RenderNotes extends Component {
                         </div>
                     })}
                 </div>
-            </div>
+            </div >
         )
     }
 }

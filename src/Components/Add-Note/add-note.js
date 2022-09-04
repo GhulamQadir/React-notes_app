@@ -41,12 +41,12 @@ class AddNote extends Component {
         let { todos, inputValues } = this.state
         let addNewTodo = { title: inputValues.title, description: inputValues.description, isEditTitle: false, z: false }
 
-
         if (inputValues.title === "" || inputValues.description === "") {
             alert("Please enter value")
             return;
         }
         else {
+            debugger
             this.setState({
                 todos: [...todos, addNewTodo],
             })
@@ -61,7 +61,8 @@ class AddNote extends Component {
         })
     }
     componentDidUpdate = () => {
-        localStorage.setItem('todos', JSON.stringify(this.state.todos))
+        console.log(this.state.todos ?? [], "haaaaa")
+        localStorage.setItem('todos', JSON.stringify(this.state.todos ?? []))
     }
 
 
