@@ -78,7 +78,7 @@ class AddNote extends Component {
     render() {
         return (
             <div>
-                <h1 style={{ textAlign: "center" }}>Notes App</h1>
+                <h2 className="main_heading">Sticky Notes App</h2>
 
 
                 {/* Modal */}
@@ -90,7 +90,7 @@ class AddNote extends Component {
                         </Modal.Header>
                         <Modal.Body>
                             <br />
-                            <input name="title" value={this.state.inputValues.title} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Enter note title" type="text" />
+                            <input maxLength={50} name="title" value={this.state.inputValues.title} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Enter note title" type="text" />
                             <br />
                             <br />
                             <input name="description" value={this.state.inputValues.description} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Enter note description" type="text" />
@@ -107,11 +107,12 @@ class AddNote extends Component {
                 </div>
 
 
-                <br />
-                <button onClick={this.openModal}>Create Note</button>
-                <br />
-                <br />
-
+                <div className="create_note_div">
+                    <br />
+                    <button onClick={this.openModal}>Create Note</button>
+                    <br />
+                    <br />
+                </div>
                 <RenderNotes state={this.state} />
             </div >
         )

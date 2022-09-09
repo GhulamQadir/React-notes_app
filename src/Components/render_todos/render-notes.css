@@ -1,8 +1,20 @@
-.note {
+.notes_main_div {
+
+    margin: auto;
+    width: 95%;
+    background-color: aqua;
+    text-align: center;
+
+}
+
+.note_div {
     background-color: blue;
     padding: 40px;
-    width: 30%;
-    margin: 20px;
+    width: 22%;
+    margin: auto;
+    text-align: center;
+    display: inline-block;
+    margin: 15px;
 }
 
 li {
