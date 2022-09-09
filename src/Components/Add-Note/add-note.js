@@ -13,7 +13,8 @@ class AddNote extends Component {
             notes: [],
             inputValues: {
                 title: "",
-                description: ""
+                description: "",
+                isImportantNote: false
             },
             updatedInputValues: {
                 updatedTitle: "",
@@ -39,7 +40,7 @@ class AddNote extends Component {
     addNote = (e) => {
         e.preventDefault();
         let { notes, inputValues } = this.state
-        let addNewTodo = { title: inputValues.title, description: inputValues.description, isEditTitle: false, }
+        let addNewTodo = { title: inputValues.title, description: inputValues.description, isImportantNote: inputValues.isImportantNote, isEditDescription: false, isEditTitle: false, }
 
         if (inputValues.title === "" || inputValues.description === "") {
             alert("Please enter value")
@@ -48,11 +49,28 @@ class AddNote extends Component {
         else {
             this.setState({
                 notes: [...notes, addNewTodo],
+                inputValues: {
+                    title: "",
+                    description: "",
+                    isImportantNote: false
+                },
             })
+            console.log(notes)
         }
         this.closeModal()
     }
 
+
+    isImportantNoteBox = (e) => {
+        let isChecked = e.target.checked;
+        console.log(isChecked)
+
+        let { inputValues } = this.state
+
+        this.setState({
+            inputValues: { ...inputValues, isImportantNote: isChecked }
+        })
+    }
     componentDidMount = () => {
         this.setState({
             notes: JSON.parse(localStorage.getItem('notes')),
@@ -94,6 +112,9 @@ class AddNote extends Component {
                             <br />
                             <br />
                             <input name="description" value={this.state.inputValues.description} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Enter note description" type="text" />
+                            <br />
+                            <br />
+                            <input type="checkbox" onChange={(e) => this.isImportantNoteBox(e)} /><span>is Important</span>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={this.closeModal}>
