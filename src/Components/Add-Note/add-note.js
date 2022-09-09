@@ -10,7 +10,7 @@ class AddNote extends Component {
     constructor() {
         super()
         this.state = {
-            todos: [],
+            notes: [],
             inputValues: {
                 title: "",
                 description: ""
@@ -38,8 +38,8 @@ class AddNote extends Component {
 
     addNote = (e) => {
         e.preventDefault();
-        let { todos, inputValues } = this.state
-        let addNewTodo = { title: inputValues.title, description: inputValues.description, isEditTitle: false, z: false }
+        let { notes, inputValues } = this.state
+        let addNewTodo = { title: inputValues.title, description: inputValues.description, isEditTitle: false, }
 
         if (inputValues.title === "" || inputValues.description === "") {
             alert("Please enter value")
@@ -47,20 +47,19 @@ class AddNote extends Component {
         }
         else {
             this.setState({
-                todos: [...todos, addNewTodo],
+                notes: [...notes, addNewTodo],
             })
-            console.log(todos)
         }
         this.closeModal()
     }
 
     componentDidMount = () => {
         this.setState({
-            todos: JSON.parse(localStorage.getItem('todos')),
+            notes: JSON.parse(localStorage.getItem('notes')),
         })
     }
     componentDidUpdate = () => {
-        localStorage.setItem('todos', JSON.stringify(this.state.todos ?? []))
+        localStorage.setItem('notes', JSON.stringify(this.state.notes ?? []))
     }
 
 
@@ -79,14 +78,6 @@ class AddNote extends Component {
     render() {
         return (
             <div>
-                {/* <div className="add_todo_div">
-                    <form onSubmit={(e) => this.addTodo(e)}>
-                        <input className="add_todo_field" value={this.state.newTodo} onChange={(e) => this.todoValueOnChange(e)} placeholder="Enter task" type="text" />
-                        <button className="add_task_btn" onClick={this.addTodo}>Add Note</button>
-                    </form>
-                </div> */}
-
-
                 <h1 style={{ textAlign: "center" }}>Notes App</h1>
 
 

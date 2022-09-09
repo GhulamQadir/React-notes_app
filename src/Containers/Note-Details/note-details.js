@@ -8,7 +8,8 @@ import './note-details.css'
 
 class NoteDetails extends Component {
     componentDidUpdate = () => {
-        localStorage.setItem('todos', JSON.stringify(this.props.location.state.notes))
+        let { notes } = this.props.location.state
+        localStorage.setItem('notes', JSON.stringify(notes))
     }
 
     componentDidMount = () => {
@@ -18,8 +19,10 @@ class NoteDetails extends Component {
         note.isEditDescription = false
 
         this.setState({
-            notes: notes
+            notes: notes,
         })
+
+
     }
 
 
@@ -63,8 +66,6 @@ class NoteDetails extends Component {
                 updatedDescription: updatedInputValues.updatedDescription
             }
         })
-        console.log("updated=>>", updatedInputValues.updatedDescription)
-
     }
 
     editDescription = () => {
@@ -96,8 +97,6 @@ class NoteDetails extends Component {
 
     render() {
         let note = this.props.location.state.note
-        // console.log(this.props.location.state.asdjk)
-
         return (
             <div className="mainDiv" >
                 <h1>Note details</h1>

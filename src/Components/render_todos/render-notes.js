@@ -7,86 +7,41 @@ import './render-notes.css'
 
 class RenderNotes extends Component {
 
-    editTodoValueOnchange = (e) => {
-        this.props.state.updatedVal = e.target.value
-        this.setState({
-            updatedVal: this.props.state.updatedVal
-        })
-    }
+
 
 
     deleteTodo(index) {
-        let { todos } = this.props.state
-        todos.splice(index, 1)
+        let { notes } = this.props.state
+        notes.splice(index, 1)
         this.setState({
-            todos: todos
-        })
-    }
-
-    editTodoInput(index) {
-        let { todos, updatedVal } = this.props.state
-
-        todos[index].isEdit = true
-        this.props.state.updatedVal = todos[index].title
-        this.setState({
-            todos: todos,
-            updatedVal: updatedVal
+            notes: notes
         })
     }
 
 
-    cancel = (index) => {
-        let { todos } = this.props.state
-
-        todos[index].isEdit = false
-
-        this.setState({
-            todos: todos
-        })
-    }
-
-    updateTodo = (index) => {
-        let { todos, updatedVal } = this.props.state
-
-        if (updatedVal.length < 1) {
-            alert("please enter some value")
-            return;
-        }
-        else {
-            todos[index].title = updatedVal
-            todos[index].isEdit = false
-            this.setState({
-                todos: todos,
-            })
-        }
-    }
 
     viewNote = (index) => {
-        let { updatedInputValues, todos } = this.props.state
-        let note = this.props.state.todos[index]
-        this.props.history.push({ pathname: '/note-details', state: { note: note, index: index, notes: todos, updatedInputValues: updatedInputValues } })
+        let { updatedInputValues, notes } = this.props.state
+        let note = this.props.state.notes[index]
+        this.props.history.push({ pathname: '/note-details', state: { note: note, index: index, notes: notes, updatedInputValues: updatedInputValues } })
     }
 
 
     componentDidUpdate = () => {
-        localStorage.setItem('todos', JSON.stringify(this.props.state.todos))
+        localStorage.setItem('notes', JSON.stringify(this.props.state.notes))
     }
 
 
     render() {
-        console.log(this.props.state.todos)
         return (
             <div>
                 <h1>Render Notes component</h1>
 
                 <div>
-                    {this.props.state.todos && this.props.state.todos.map((note, index) => {
+                    {this.props.state.notes && this.props.state.notes.map((note, index) => {
                         return <div className="note" key={index}>
                             <li style={{ fontWeight: "bold" }}>{index + 1}: </li>
                             <li>{note.isEdit ? <input onChange={(e) => this.editTodoValueOnchange(e)} defaultValue={note.title} type="text" /> : note.title}</li>
-
-                            {/* <li>{note.isEdit ? <button onClick={() => this.updateTodo(index)}>Update</button> : <button onClick={() => this.editTodoInput(index)}>Edit</button>}</li> */}
-
                             <li>{note.isEdit ? <button onClick={() => this.cancel(index)}>Cancel</button> : <button onClick={() => this.deleteTodo(index)}>Delete</button>}</li>
 
                             <br />
