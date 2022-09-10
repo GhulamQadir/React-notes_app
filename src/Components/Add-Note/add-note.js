@@ -3,6 +3,7 @@ import RenderNotes from "../render_todos/render-notes";
 import Modal from 'react-bootstrap/Modal';
 import './add-note.css'
 import { Button } from "react-bootstrap";
+import CreateNoteModal from "../Create-Note-Modal/create-note-modal";
 
 
 class AddNote extends Component {
@@ -20,57 +21,57 @@ class AddNote extends Component {
                 updatedTitle: "",
                 updatedDescription: ""
             },
-            modalShow: false,
+            isModalShow: false,
         }
     }
 
 
-    inputValuesOnChange(e) {
-        this.setState({
-            inputValues: {
-                ...this.state.inputValues,
-                [e.target.name]: e.target.value
-            }
-        })
+    // inputValuesOnChange(e) {
+    //     this.setState({
+    //         inputValues: {
+    //             ...this.state.inputValues,
+    //             [e.target.name]: e.target.value
+    //         }
+    //     })
 
-    }
-
-
-
-    addNote = (e) => {
-        e.preventDefault();
-        let { notes, inputValues } = this.state
-        let addNewTodo = { title: inputValues.title, description: inputValues.description, isImportantNote: inputValues.isImportantNote, isEditDescription: false, isEditTitle: false, }
-
-        if (inputValues.title === "" || inputValues.description === "") {
-            alert("Please enter value")
-            return;
-        }
-        else {
-            this.setState({
-                notes: [...notes, addNewTodo],
-                inputValues: {
-                    title: "",
-                    description: "",
-                    isImportantNote: false
-                },
-            })
-            console.log(notes)
-        }
-        this.closeModal()
-    }
+    // }
 
 
-    isImportantNoteBox = (e) => {
-        let isChecked = e.target.checked;
-        console.log(isChecked)
 
-        let { inputValues } = this.state
+    // addNote = (e) => {
+    //     e.preventDefault();
+    //     let { notes, inputValues } = this.state
+    //     let addNewTodo = { title: inputValues.title, description: inputValues.description, isImportantNote: inputValues.isImportantNote, isEditDescription: false, isEditTitle: false, }
 
-        this.setState({
-            inputValues: { ...inputValues, isImportantNote: isChecked }
-        })
-    }
+    //     if (inputValues.title === "" || inputValues.description === "") {
+    //         alert("Please enter value")
+    //         return;
+    //     }
+    //     else {
+    //         this.setState({
+    //             notes: [...notes, addNewTodo],
+    //             inputValues: {
+    //                 title: "",
+    //                 description: "",
+    //                 isImportantNote: false
+    //             },
+    //         })
+    //         console.log(notes)
+    //     }
+    //     this.closeModal()
+    // }
+
+
+    // isImportantNoteBox = (e) => {
+    //     let isChecked = e.target.checked;
+    //     console.log(isChecked)
+
+    //     let { inputValues } = this.state
+
+    //     this.setState({
+    //         inputValues: { ...inputValues, isImportantNote: isChecked }
+    //     })
+    // }
     componentDidMount = () => {
         this.setState({
             notes: JSON.parse(localStorage.getItem('notes')),
@@ -83,15 +84,15 @@ class AddNote extends Component {
 
     openModal = () => {
         this.setState({
-            modalShow: true
+            isModalShow: true
         })
     }
 
-    closeModal = () => {
-        this.setState({
-            modalShow: false
-        })
-    }
+    // closeModal = () => {
+    //     this.setState({
+    //         isModalShow: false
+    //     })
+    // }
 
     render() {
         return (
@@ -100,21 +101,17 @@ class AddNote extends Component {
 
 
                 {/* Modal */}
-                <div>
-                    <Modal show={this.state.modalShow} >
+                {/* <div>
+                    <Modal show={this.state.isModalShow} >
                         <Modal.Header>
-                            <Modal.Title>Add Note</Modal.Title>
-                            <button onClick={this.closeModal}>X</button>
+                            <Modal.Title>Create Note</Modal.Title>
+                            <button className="modal_close_btn" onClick={this.closeModal}>x</button>
                         </Modal.Header>
                         <Modal.Body>
                             <br />
-                            <input maxLength={50} name="title" value={this.state.inputValues.title} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Enter note title" type="text" />
-                            <br />
-                            <br />
-                            <input name="description" value={this.state.inputValues.description} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Enter note description" type="text" />
-                            <br />
-                            <br />
-                            <input type="checkbox" onChange={(e) => this.isImportantNoteBox(e)} /><span>is Important</span>
+                            <input className="note_title_field" maxLength={50} name="title" value={this.state.inputValues.title} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Note title" type="text" />
+                            <input className="note_descrip_field" name="description" value={this.state.inputValues.description} onChange={(e) => this.inputValuesOnChange(e)} placeholder="Note description" type="text" />
+                            <input className="is_import_checkbox" type="checkbox" onChange={(e) => this.isImportantNoteBox(e)} /><span className="is_Important">Is Important note</span>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={this.closeModal}>
@@ -125,9 +122,10 @@ class AddNote extends Component {
                             </Button>
                         </Modal.Footer>
                     </Modal>
-                </div>
+                </div> */}
 
 
+                <CreateNoteModal state={this.state} />
                 <div className="create_note_div">
                     <br />
                     <button onClick={this.openModal}>Create Note</button>

@@ -1,16 +1,5 @@
-.main_heading {
-    text-align: center;
-    margin: 30px 5px 30px 5px;
-}
-
-.create_note_div {
-    text-align: center;
-}
-
-
-
 /*                      Modal Styling                    */
-/* .modal_close_btn {
+.modal_close_btn {
     background: none;
     border: none;
     font-size: 18px;
@@ -48,4 +37,4 @@
 
 .is_Important {
     font-size: 18px;
-} */
+}

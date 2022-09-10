@@ -38,7 +38,7 @@ class NoteDetails extends Component {
     }
 
     editTitle = () => {
-        let { note, notes, index, updatedInputValues } = this.props.location.state
+        let {  notes, index, updatedInputValues } = this.props.location.state
         notes[index].isEditTitle = true
         updatedInputValues.updatedTitle = notes[index].title
         this.setState({
@@ -69,7 +69,7 @@ class NoteDetails extends Component {
     }
 
     editDescription = () => {
-        let { note, notes, index, updatedInputValues } = this.props.location.state
+        let {  notes, index, updatedInputValues } = this.props.location.state
         notes[index].isEditDescription = true
         updatedInputValues.updatedDescription = notes[index].description
         this.setState({
@@ -78,7 +78,7 @@ class NoteDetails extends Component {
     }
 
     updateDescription = () => {
-        let { note, notes, index, updatedInputValues } = this.props.location.state
+        let { note, notes, updatedInputValues } = this.props.location.state
         note.description = updatedInputValues.updatedDescription
         note.isEditDescription = false
         this.setState({
