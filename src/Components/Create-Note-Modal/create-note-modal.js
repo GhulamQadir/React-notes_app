@@ -10,16 +10,15 @@ import { withRouter } from "react-router-dom";
 class CreateNoteModal extends Component {
 
     inputValuesOnChange(e) {
-        // console.log(e.target.value)
-        // let { inputValues } = this.props.state
-        console.log(this.props.state.inputValues)
 
+        this.props.state.inputValues = {
+            ...this.props.state.inputValues,
+            [e.target.name]: e.target.value
+        }
         this.setState({
-            inputValues: {
-                ...this.props.state.inputValues,
-                [e.target.name]: e.target.value
-            }
+            inputValues: this.props.state.inputValues
         })
+        console.log(this.props.state.inputValues)
     }
 
 
@@ -27,7 +26,7 @@ class CreateNoteModal extends Component {
     addNote = (e) => {
         e.preventDefault();
         let { notes, inputValues } = this.props.state
-        let addNewTodo = { title: inputValues.title, description: inputValues.description, isImportantNote: inputValues.isImportantNote, isEditDescription: false, isEditTitle: false, }
+        let addNewNote = { title: inputValues.title, description: inputValues.description, isImportantNote: inputValues.isImportantNote, isEditDescription: false, isEditTitle: false, }
 
         console.log(inputValues.title, inputValues.description,)
 
@@ -36,27 +35,31 @@ class CreateNoteModal extends Component {
             return;
         }
         else {
+            notes.push(addNewNote)
+
+            this.props.state.inputValues = {
+                title: "",
+                description: "",
+                isImportantNote: false
+            }
             this.setState({
-                notes: [...notes, addNewTodo],
-                inputValues: {
-                    title: "",
-                    description: "",
-                    isImportantNote: false
-                },
+                notes: this.props.state.notes,
+                inputValues: inputValues
             })
-            console.log(notes)
+
         }
         this.closeModal()
+        console.log(notes)
     }
 
 
     isImportantNoteBox = (e) => {
         let isChecked = e.target.checked;
         console.log(isChecked)
-
+        this.props.state.inputValues.isImportantNote = isChecked
 
         this.setState({
-            inputValues: { ...this.props.state.inputValues, isImportantNote: isChecked }
+            inputValues: this.props.state.inputValues
         })
     }
 
