@@ -35,7 +35,7 @@ class CreateNoteModal extends Component {
             return;
         }
         else {
-            notes.push(addNewNote)
+            this.props.state.notes.push(addNewNote)
 
             this.props.state.inputValues = {
                 title: "",
@@ -43,7 +43,7 @@ class CreateNoteModal extends Component {
                 isImportantNote: false
             }
             this.setState({
-                notes: this.props.state.notes,
+                notes: notes,
                 inputValues: inputValues
             })
 
@@ -70,6 +70,10 @@ class CreateNoteModal extends Component {
         this.setState({
             isModalShow: isModalShow
         })
+    }
+
+    componentDidUpdate = () => {
+        localStorage.setItem('notes', JSON.stringify(this.props.state.notes ?? []))
     }
 
     render() {
