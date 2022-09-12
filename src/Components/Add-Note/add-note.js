@@ -37,11 +37,15 @@ function AddNote() {
         setIsModalShow(false)
     }
 
-
-    const inputValuesOnChange = (e) => {
-        setInputValues({ ...inputValues, [e.target.name]: e.target.value })
-
+    const deleteNote = (index) => {
+        notes.splice(index, 1)
+        notes = notes
+        setNotes(notes)
+        console.log("nishani=:>>", notes)
+        localStorage.setItem('notes', JSON.stringify(notes ?? []))
     }
+
+
 
     useEffect(() => {
         setNotes(JSON.parse(localStorage.getItem('notes')))
@@ -68,7 +72,7 @@ function AddNote() {
                 <br />
                 <br />
             </div> */}
-            <RenderNotes notes={notes} />
+            <RenderNotes notes={notes} deleteNoteee={(index) => deleteNote(index)} />
         </div>
     )
 }

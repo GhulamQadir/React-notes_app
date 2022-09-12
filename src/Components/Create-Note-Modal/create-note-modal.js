@@ -124,13 +124,14 @@ function CreateNoteModal(props) {
         notes.push(addNewNote)
         notes = notes
 
-        console.log("notges=:::", notes)
-
-
         hideModal()
     }
 
 
+    // useEffect(() => {
+    //     console.log("I will run on every render")
+    //     localStorage.setItem('notes', JSON.stringify(notes ?? []))
+    // })
 
 
 
