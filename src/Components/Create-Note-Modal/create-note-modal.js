@@ -121,16 +121,16 @@ function CreateNoteModal(props) {
         let addNewNote = { title: inputValues.title, description: inputValues.description, isImportantNote: inputValues.isImportantNote, isEditDescription: false, isEditTitle: false, }
 
         console.log(inputValues.title, inputValues.description,)
+        notes.push(addNewNote)
+        notes = notes
 
-        // notes.push(addNewNote)
-        notes = [...notes, addNewNote]
-
-        // hideModal
-        console.log(notes)
+        console.log("notges=:::", notes)
 
 
         hideModal()
     }
+
+
 
 
 

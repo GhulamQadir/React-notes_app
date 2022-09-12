@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState, useEffect } from "react";
 import RenderNotes from "../render_todos/render-notes";
 import Modal from 'react-bootstrap/Modal';
 import './add-note.css'
@@ -8,7 +8,7 @@ import CreateNoteModal from "../Create-Note-Modal/create-note-modal";
 
 
 function AddNote() {
-    const [notes, setNotes] = useState([])
+    let [notes, setNotes] = useState([])
     const [inputValues, setInputValues] = useState({
         title: "",
         description: "",
@@ -43,12 +43,21 @@ function AddNote() {
 
     }
 
+    useEffect(() => {
+        setNotes(JSON.parse(localStorage.getItem('notes')))
+
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('notes', JSON.stringify(notes ?? []))
+    })
+
     return (
         <div>
             <h2 className="main_heading">Sticky Notes App</h2>
             <h1>{inputValues.title}</h1>
 
-            <button onClick={updateValues}>Update Input Values</button>
+            {/* <button onClick={updateValues}>Update Input Values</button> */}
             <br />
             <button onClick={openModal}>Create Note</button>
 
@@ -58,8 +67,8 @@ function AddNote() {
                 <button onClick={this.openModal}>Create Note</button>
                 <br />
                 <br />
-            </div>
-            <RenderNotes state={this.state} /> */}
+            </div> */}
+            <RenderNotes notes={notes} />
         </div>
     )
 }
