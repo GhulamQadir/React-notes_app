@@ -1,4 +1,5 @@
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import './render-notes.css'
 
 
@@ -61,6 +62,7 @@ import './render-notes.css'
 
 
 function RenderNotes(props) {
+    const history = useHistory();
     let { notes } = props
 
     const deleteNote = (index) => {
@@ -70,6 +72,12 @@ function RenderNotes(props) {
         localStorage.setItem('notes', JSON.stringify(notes ?? []))
     }
 
+
+    const viewNote = (index) => {
+        let { updatedInputValues, notes } = props
+        let note = notes[index]
+        history.push({ pathname: '/note-details', state: { note: note, index: index, notes: notes, updatedInputValues: updatedInputValues } })
+    }
 
     return (
         <div>
@@ -85,13 +93,9 @@ function RenderNotes(props) {
 
                         <button onClick={() => deleteNote(index)}>Delete</button>
 
-                        {/* <li style={{ fontWeight: "bold" }}>{index + 1}: </li>
-                        <li>{note.isEdit ? <input onChange={(e) => this.editTodoValueOnchange(e)} defaultValue={note.title} type="text" /> : note.title}</li>
-                        <li>{note.isEdit ? <button onClick={() => this.cancel(index)}>Cancel</button> : <button onClick={() => this.deleteTodo(index)}>Delete</button>}</li> */}
-
                         <br />
                         <br />
-                        {/* <button onClick={() => this.viewNote(index)}>View Note</button> */}
+                        <button onClick={() => viewNote(index)}>View Note</button>
                     </div>
                 })}
             </div>

@@ -19,10 +19,10 @@ function Home() {
         isImportantNote: false
     })
 
-    // const [updatedInputValues, setUpdatedInputValues] = useState({
-    //     updatedTitle: "",
-    //     updatedDescription: ""
-    // })
+    const [updatedInputValues, setUpdatedInputValues] = useState({
+        updatedTitle: "",
+        updatedDescription: ""
+    })
 
     const [isModalShow, setIsModalShow] = useState(false)
 
@@ -50,10 +50,10 @@ function Home() {
             <button onClick={openModal}>Create Note</button>
 
 
-            <CreateNoteModal notes={notes} hideModal={closeModal} showModal={isModalShow} inputValues={inputValues} />
+            <CreateNoteModal notes={notes} hideModal={closeModal} showModal={isModalShow} inputValues={inputValues} updatedValues={updatedInputValues} />
 
 
-            <RenderNotes notes={notes} />
+            <RenderNotes notes={notes} updatedInputValues={updatedInputValues} />
 
 
         </div>
