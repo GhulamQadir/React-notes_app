@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import Modal from 'react-bootstrap/Modal';
 import { Button } from "react-bootstrap";
 import './create-note-modal.css'
@@ -120,19 +119,17 @@ function CreateNoteModal(props) {
     const saveNote = () => {
         let addNewNote = { title: inputValues.title, description: inputValues.description, isImportantNote: inputValues.isImportantNote, isEditDescription: false, isEditTitle: false, }
 
-        console.log(inputValues.title, inputValues.description,)
+        console.log("notes==>>", notes)
         notes.push(addNewNote)
         notes = notes
 
         hideModal()
     }
 
-
-    // useEffect(() => {
-    //     console.log("I will run on every render")
-    //     localStorage.setItem('notes', JSON.stringify(notes ?? []))
-    // })
-
+    const isImportantNoteCheckBox = (e) => {
+        let isChecked = e.target.checked;
+        inputValues.isImportantNote = isChecked
+    }
 
 
 
@@ -148,7 +145,7 @@ function CreateNoteModal(props) {
                     <br />
                     <input onChange={(e) => inputValuesOnChange(e)} className="note_title_field" maxLength={50} name="title" placeholder="Note title" type="text" />
                     <input onChange={(e) => inputValuesOnChange(e)} className="note_descrip_field" name="description" placeholder="Note description" type="text" />
-                    <input className="is_import_checkbox" type="checkbox" /><span className="is_Important">Is Important note</span>
+                    <input className="is_import_checkbox" onChange={(e) => isImportantNoteCheckBox(e)} type="checkbox" /><span className="is_Important">Is Important note</span>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={hideModal} >

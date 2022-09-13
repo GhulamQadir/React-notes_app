@@ -59,19 +59,12 @@ function AddNote() {
     return (
         <div>
             <h2 className="main_heading">Sticky Notes App</h2>
-            <h1>{inputValues.title}</h1>
 
-            {/* <button onClick={updateValues}>Update Input Values</button> */}
             <br />
             <button onClick={openModal}>Create Note</button>
 
             <CreateNoteModal notes={notes} hideModal={closeModal} showModal={isModalShow} inputValues={inputValues} setInput={setInputValues} />
-            {/* <div className="create_note_div">
-                <br />
-                <button onClick={this.openModal}>Create Note</button>
-                <br />
-                <br />
-            </div> */}
+
             <RenderNotes notes={notes} deleteNoteee={(index) => deleteNote(index)} />
         </div>
     )

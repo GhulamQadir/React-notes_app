@@ -61,14 +61,14 @@ import './render-notes.css'
 
 
 function RenderNotes(props) {
-    let { notes, deleteNoteee } = props
+    let { notes } = props
 
-    // const deleteNote = (index) => {
-    //     notes.splice(index, 1)
-    //     console.log(notes)
-    //     notes = notes
-    //     localStorage.setItem('notes', JSON.stringify(notes ?? []))
-    // }
+    const deleteNote = (index) => {
+        notes.splice(index, 1)
+        console.log(notes)
+        notes = notes
+        localStorage.setItem('notes', JSON.stringify(notes ?? []))
+    }
 
 
     return (
@@ -83,7 +83,7 @@ function RenderNotes(props) {
                         <br />
                         <h2>{note.title}</h2>
 
-                        <button onClick={() => deleteNoteee(index)}>Delete</button>
+                        <button onClick={() => deleteNote(index)}>Delete</button>
 
                         {/* <li style={{ fontWeight: "bold" }}>{index + 1}: </li>
                         <li>{note.isEdit ? <input onChange={(e) => this.editTodoValueOnchange(e)} defaultValue={note.title} type="text" /> : note.title}</li>
