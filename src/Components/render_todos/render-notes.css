@@ -2,28 +2,47 @@
 
     margin: auto;
     width: 95%;
-    background-color: aqua;
     text-align: center;
 
 }
 
-.note_div {
-    background-color: blue;
-    padding: 40px;
-    width: 22%;
+.note {
+    background-color: #feff9c;
+    height: 220px;
+    width: 21%;
     margin: auto;
     text-align: center;
     display: inline-block;
     margin: 15px;
+    transform: rotate(-6deg);
 }
 
-li {
-    list-style: none;
-    display: inline;
-    color: white;
+.note:nth-child(even) {
+    transform: rotate(4deg);
+    background-color: #7afcff;
+    position: relative;
+    top: 8px;
 }
 
-p {
-    color: white;
+.note:nth-child(3n) {
+    transform: rotate(-3deg);
+    background-color: rgb(240, 134, 169);
+    position: relative;
+    top: 8px;
 }
 
+.remove_note_btn {
+    background: none;
+    border: none;
+    color: grey;
+    font-size: 19px;
+    font-weight: 100;
+    float: right;
+}
+
+.note_title {
+    display: inline-block;
+    font-size: 23px;
+    padding-top: 35px;
+    text-align: center;
+}
