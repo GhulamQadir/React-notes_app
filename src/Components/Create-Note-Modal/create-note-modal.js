@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Button } from "react-bootstrap";
 import './create-note-modal.css'
@@ -7,10 +8,18 @@ import './create-note-modal.css'
 
 
 function CreateNoteModal(props) {
-    let { notes, showModal, hideModal, inputValues } = props;
+    let { notes, showModal, hideModal } = props;
+
+    let [inputValues, setInputValues] = useState({
+        title: "",
+        description: "",
+        isImportantNote: false
+    })
 
     const inputValuesOnChange = (e) => {
         inputValues = { ...inputValues, [e.target.name]: e.target.value }
+
+        setInputValues(inputValues)
         console.log(inputValues)
     }
 
@@ -18,9 +27,9 @@ function CreateNoteModal(props) {
     const saveNote = () => {
         let addNewNote = { title: inputValues.title, description: inputValues.description, isImportantNote: inputValues.isImportantNote, isEditDescription: false, isEditTitle: false, }
 
-        console.log("notes==>>", notes)
+
+        console.log(addNewNote)
         notes.push(addNewNote)
-        notes = notes
 
         hideModal()
     }
