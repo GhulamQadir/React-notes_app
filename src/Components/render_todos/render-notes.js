@@ -27,8 +27,6 @@ function RenderNotes(props) {
 
     return (
         <div>
-            <h1>Render Notes component</h1>
-
             <div className="notes_main_div">
                 {props.notes && props.notes.map((note, index) => {
                     return <div className="note" key={index}>
