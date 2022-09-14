@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import './note-details.css'
 
@@ -165,6 +165,12 @@ function NoteDetails(props) {
         //     notes: notes,
         // })
     }
+
+    useEffect(() => {
+
+        localStorage.setItem('notes', JSON.stringify(props.location.state.notes))
+
+    }, [props.location.state.notes])
     return (
 
         <div className="mainDiv" >

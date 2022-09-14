@@ -1,14 +1,13 @@
 .notes_main_div {
-
     margin: auto;
     width: 95%;
     text-align: center;
-
 }
 
 .notes_main_div {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .note {
@@ -17,16 +16,9 @@
     display: flex;
     flex-direction: column;
     margin: 1em;
-
-
+    padding: 5px;
     position: relative;
     background-color: #feff9c;
-    /* height: 220px;
-    width: 21%;
-    margin: auto;
-     text-align: center;
-    display: inline-block; 
-    margin: 15px 17px 15px 17px; */
     transform: rotate(-6deg);
     transition: all ease 0.3s;
     box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 15px;
@@ -47,7 +39,7 @@
 }
 
 .note:hover {
-    transform: scale(1.3);
+    transform: scale(1.4);
     z-index: 5;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
@@ -58,13 +50,22 @@
     background: none;
     border: none;
     color: grey;
-    font-size: 19px;
-    font-weight: 100;
-    float: right;
+    font-size: 26px;
+    font-weight: 500;
+    position: absolute;
+    top: -8px;
+    right: -2px;
 }
 
 .note_title {
-    display: inline-block;
     font-size: 23px;
-    padding-top: 10px;
+    padding-top: 20px;
+}
+
+
+@media (max-width:450px) {
+    .note {
+        height: 10em;
+        width: 10em;
+    }
 }

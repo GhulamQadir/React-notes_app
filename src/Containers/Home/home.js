@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-// import AddNote from "../../Components/Add-Note/add-note";
 import CreateNoteModal from "../../Components/Create-Note-Modal/create-note-modal";
 import RenderNotes from "../../Components/render_todos/render-notes";
-
+import './home.css'
 
 
 
@@ -42,12 +41,17 @@ function Home() {
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('notes', JSON.stringify(notes ?? []))
+        localStorage.setItem('notes', JSON.stringify(notes))
     })
     return (
         <div>
+            <div className="notes_app_heading">
+                <p>Sticky Notes App</p>
+            </div>
             {/* AddNote Button  */}
-            <button onClick={openModal}>Create Note</button>
+            <button className="add_note_btn" onClick={openModal}><div className="add_note_btn_text">+</div></button>
+
+
 
 
             <CreateNoteModal notes={notes} hideModal={closeModal} showModal={isModalShow} inputValues={inputValues} updatedValues={updatedInputValues} />
@@ -56,7 +60,7 @@ function Home() {
             <RenderNotes notes={notes} updatedInputValues={updatedInputValues} />
 
 
-        </div>
+        </div >
     )
 }
 

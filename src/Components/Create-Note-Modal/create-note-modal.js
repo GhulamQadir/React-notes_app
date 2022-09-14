@@ -38,7 +38,7 @@ function CreateNoteModal(props) {
             <Modal show={showModal}>
                 <Modal.Header>
                     <Modal.Title>Create Note</Modal.Title>
-                    <button className="modal_close_btn" onClick={hideModal}>x</button>
+                    <button className="modal_close_btn" onClick={hideModal}>&times;</button>
                 </Modal.Header>
                 <Modal.Body>
                     <br />
