@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
-import { useHistory } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 import './render-notes.css'
+import ImportantImg from '../../Images/imp_logo.png'
 
 
 
@@ -31,14 +32,14 @@ function RenderNotes(props) {
             <div className="notes_main_div">
                 {props.notes && props.notes.map((note, index) => {
                     return <div className="note" key={index}>
-                        {/* {note.isImportantNote ? <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJltZ_46zMjqNlTMb9MlfLgOEH_DO5XbzZmvMe5m5gdzlAFlHIgZtXPT-jv58kv95o4Ew&usqp=CAU' height="30" /> : ""} */}
+                        {note.isImportantNote ? <img src={ImportantImg} className="is_important_logo" /> : ""}
                         <button className="remove_note_btn" onClick={() => props.deleteNoteee(index)}>&times;</button>
 
 
                         <p className="note_title">{note.title}</p>
 
 
-                        <button onClick={() => viewNote(index)}><a>View Note</a></button>
+                        <button className="view_note_btn" onClick={() => viewNote(index)}><a>View Note</a></button>
                     </div>
                 })}
             </div>

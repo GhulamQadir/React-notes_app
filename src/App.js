@@ -4,9 +4,11 @@ import RenderNotes from "./Components/render_todos/render-notes";
 import './App.css';
 import AppRouter from './config/Router';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link, withRouter } from "react-router-dom";
 
 
 function App() {
+  const [isModalShow, setIsModalShow] = useState(false)
   let [notes, setNotes] = useState([])
 
 
@@ -15,7 +17,6 @@ function App() {
     updatedDescription: ""
   })
 
-  const [isModalShow, setIsModalShow] = useState(false)
 
 
   const openModal = () => {
@@ -46,6 +47,7 @@ function App() {
     <div>
       {/* <AppRouter /> */}
 
+
       <div className="notes_app_heading">
         <p>Sticky Notes App</p>
       </div>
@@ -58,6 +60,8 @@ function App() {
 
 
       <RenderNotes deleteNoteee={deleteNote} notes={notes} updatedInputValues={updatedInputValues} />
+      {/* <Link>hello</Link> */}
+
 
 
     </div>

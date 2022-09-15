@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Button } from "react-bootstrap";
 import './create-note-modal.css'
@@ -40,10 +40,27 @@ function CreateNoteModal(props) {
     }
 
 
+    let modalRef = useRef();
+
+    useEffect(() => {
+        let handler = (event) => {
+            if (!modalRef.current.contains(event.target)) {
+                hideModal()
+            }
+        };
+        document.addEventListener("mousedown", handler)
+
+
+        return () => {
+            document.removeEventListener("mousedown", handler)
+        }
+    })
+
+
 
 
     return (
-        <div>
+        <div ref={modalRef}>
             <Modal show={showModal}>
                 <Modal.Header>
                     <Modal.Title>Create Note</Modal.Title>
