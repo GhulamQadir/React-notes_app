@@ -42,19 +42,19 @@ function CreateNoteModal(props) {
 
     let modalRef = useRef();
 
-    useEffect(() => {
-        let handler = (event) => {
-            if (!modalRef.current.contains(event.target)) {
-                hideModal()
-            }
-        };
-        document.addEventListener("mousedown", handler)
+    // useEffect(() => {
+    //     let handler = (event) => {
+    //         if (!modalRef.current.contains(event.target)) {
+    //             hideModal()
+    //         }
+    //     };
+    //     document.addEventListener("mousedown", handler)
 
 
-        return () => {
-            document.removeEventListener("mousedown", handler)
-        }
-    })
+    //     return () => {
+    //         document.removeEventListener("mousedown", handler)
+    //     }
+    // })
 
 
 
