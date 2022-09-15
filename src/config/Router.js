@@ -10,9 +10,9 @@ class AppRouter extends Component {
     render() {
         return (
             <Router>
-                <Route exact path='/' component={App} />
+                {/* <Route exact path='/' component={App} /> */}
 
-                <Route exact path='/home' component={Home} />
+                <Route exact path='/' component={Home} />
                 <Route exact path={'/note-details'} component={NoteDetails} />
             </Router >
         )

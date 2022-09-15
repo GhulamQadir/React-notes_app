@@ -9,16 +9,9 @@ import ImportantImg from '../../Images/imp_logo.png'
 function RenderNotes(props) {
     const history = useHistory();
 
-    // const removeNote = (index) => {
-    //     notes.splice(index, 1)
-    //     console.log(notes)
-    //     notes = notes
-    //     localStorage.setItem('notes', JSON.stringify(notes ?? []))
-    // }
 
 
     const viewNote = (index) => {
-        // console.log(historyyy)
         let { updatedInputValues, notes } = props
         let note = notes[index]
         history.push({ pathname: '/note-details', state: { note: note, index: index, notes: notes, updatedInputValues: updatedInputValues } })

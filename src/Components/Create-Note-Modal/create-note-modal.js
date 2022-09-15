@@ -27,9 +27,11 @@ function CreateNoteModal(props) {
     const saveNote = () => {
         let addNewNote = { title: inputValues.title, description: inputValues.description, isImportantNote: inputValues.isImportantNote, isEditDescription: false, isEditTitle: false, }
 
+        let clearInputValues = { title: "", description: "", isImportantNote: false }
+        setInputValues(clearInputValues)
 
-        console.log(addNewNote)
         notes.push(addNewNote)
+        localStorage.setItem('notes', JSON.stringify(notes))
 
         hideModal()
     }
