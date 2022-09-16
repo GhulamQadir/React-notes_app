@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useHistory, withRouter } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import './render-notes.css'
 import ImportantImg from '../../Images/imp_logo.png'
 
@@ -12,9 +12,9 @@ function RenderNotes(props) {
 
 
     const viewNote = (index) => {
-        let { updatedInputValues, notes } = props
+        let { notes, editTitleFunc } = props
         let note = notes[index]
-        history.push({ pathname: '/note-details', state: { note: note, index: index, notes: notes, updatedInputValues: updatedInputValues } })
+        history.push({ pathname: '/note-details', state: { note: note, index: index, notes: notes, newFunc: editTitleFunc } })
 
     }
 

@@ -38,6 +38,20 @@
     top: -1px;
 }
 
+.view_note_btn {
+    position: absolute;
+    bottom: 15px;
+    text-align: center;
+    left: 30%;
+    color: rgb(11, 11, 224);
+    background: none;
+    border: none;
+}
+
+.note:hover .view_note_btn {
+    color: blue;
+}
+
 .note:hover {
     transform: scale(1.4);
     z-index: 5;
@@ -76,11 +90,4 @@
     justify-content: center;
     left: 45%;
     position: absolute;
-}
-
-.view_note_btn {
-    position: absolute;
-    bottom: 10px;
-    text-align: center;
-    left: 30%;
 }

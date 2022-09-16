@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import CreateNoteModal from "../../Components/Create-Note-Modal/create-note-modal";
-import RenderNotes from "../../Components/render_todos/render-notes";
+import RenderNotes from "../../Components/render_notes/render-notes";
 import './home.css'
 
 
@@ -12,10 +12,10 @@ function Home() {
     let [notes, setNotes] = useState([])
 
 
-    const [updatedInputValues, setUpdatedInputValues] = useState({
-        updatedTitle: "",
-        updatedDescription: ""
-    })
+    // const [updatedInputValues, setUpdatedInputValues] = useState({
+    //     updatedTitle: "",
+    //     updatedDescription: ""
+    // })
 
 
 
@@ -32,6 +32,10 @@ function Home() {
         notesArrayUpdated.splice(index, 1)
         setNotes(notesArrayUpdated)
         localStorage.setItem('notes', JSON.stringify(notesArrayUpdated))
+    }
+
+    const openTitleInput = () => {
+        console.log("chal rha ha")
     }
 
 
@@ -52,10 +56,10 @@ function Home() {
 
 
 
-            <CreateNoteModal notes={notes} hideModal={closeModal} showModal={isModalShow} updatedValues={updatedInputValues} />
+            <CreateNoteModal notes={notes} hideModal={closeModal} showModal={isModalShow} />
 
 
-            <RenderNotes deleteNoteee={deleteNote} notes={notes} updatedInputValues={updatedInputValues} />
+            <RenderNotes deleteNoteee={deleteNote} notes={notes} editTitleFunc={openTitleInput} />
 
 
 

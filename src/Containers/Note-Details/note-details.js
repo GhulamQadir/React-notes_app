@@ -128,49 +128,36 @@ import './note-details.css'
 
 
 function NoteDetails(props) {
-    let note = props.location.state.note
 
-    const deleteNote = () => {
+    let { notes, index, note, newFunc } = props.location.state
 
+    console.log(note)
+
+
+    // const openTitleInput = () => {
+    //     let notesArray = [...notes]
+    //     console.log("hello", notesArray[index])
+    //     notesArray[index].isEditTitle = true
+    //     notes = notesArray
+    // }
+
+
+
+    const editTitleValueOnchange = (e) => {
+        console.log(e.target.value)
     }
-
-    const editTitle = () => {
-        let { note, notes, updatedInputValues } = props.location.state
-        note.isEditTitle = true
-        updatedInputValues.updatedTitle = note.title
-        notes = notes
-
-        notes = notes
-
-        console.log(note)
-    }
-
-    const editTodoValueOnchange = (e) => {
-        // let { updatedInputValues } = this.props.location.state
-
-        // updatedInputValues.updatedTitle = e.target.value
-        // this.setState({
-        //     updatedInputValues: {
-        //         updatedTitle: updatedInputValues.updateTitle
-        //     }
-        // })
-    }
-
 
     const updateTitle = () => {
-        // let { note, notes, index, updatedInputValues } = this.props.location.state
-        // note.title = updatedInputValues.updatedTitle
-        // note.isEditTitle = false
-        // this.setState({
-        //     notes: notes,
-        // })
     }
 
-    useEffect(() => {
 
-        localStorage.setItem('notes', JSON.stringify(props.location.state.notes))
 
-    }, [props.location.state.notes])
+
+    // useEffect(() => {
+
+    //     localStorage.setItem('notes', JSON.stringify(props.location.state.notes))
+
+    // }, [props.location.state.notes])
     return (
 
         <div className="mainDiv" >
@@ -179,11 +166,11 @@ function NoteDetails(props) {
             <br />
             <br />
             <div className="editDivs">
-                <button onClick={deleteNote}>Delete</button>
+                {/* <button onClick={deleteNote}>Delete</button> */}
                 <br />
                 <br />
-                <li>{note.isEditTitle ? <input type="text" onChange={(e) => editTodoValueOnchange(e)} defaultValue={note.title} /> : <h4>{note.title}</h4>}</li>
-                <li>{note.isEditTitle ? <button onClick={updateTitle} className="editBtns">Update title</button> : <button onClick={editTitle} className="editBtns">edit title</button>}</li>
+                <li>{notes[index].isEditTitle ? <input type="text" onChange={(e) => editTitleValueOnchange(e)} defaultValue={note.title} /> : <h4>{note.title}</h4>}</li>
+                <li>{notes[index].isEditTitle ? <button onClick={updateTitle} className="editBtns">Update title</button> : <button onClick={newFunc} className="editBtns">edit title</button>}</li>
             </div>
             <br />
             <br />
