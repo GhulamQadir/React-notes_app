@@ -12,9 +12,9 @@ function RenderNotes(props) {
 
 
     const viewNote = (index) => {
-        let { notes, editTitleFunc } = props
+        let { notes } = props
         let note = notes[index]
-        history.push({ pathname: '/note-details', state: { note: note, index: index, notes: notes, newFunc: editTitleFunc } })
+        history.push({ pathname: '/note-details', state: { note: note, index: index, notes: notes, } })
 
     }
 

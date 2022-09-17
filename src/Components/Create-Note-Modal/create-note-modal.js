@@ -42,48 +42,48 @@ function CreateNoteModal(props) {
     }
 
 
-    let modalRef = useRef();
+    let menuref = useRef();
+    useEffect(() => {
+        let handler = (event) => {
+            if (!menuref.current.contains(event.target)) {
+                hideModal()
+            }
+        };
+        document.addEventListener("mousedown", handler)
 
-    // useEffect(() => {
-    //     let handler = (event) => {
-    //         if (!modalRef.current.contains(event.target)) {
-    //             hideModal()
-    //         }
-    //     };
-    //     document.addEventListener("mousedown", handler)
 
-
-    //     return () => {
-    //         document.removeEventListener("mousedown", handler)
-    //     }
-    // })
-
+        return () => {
+            document.removeEventListener("mousedown", handler)
+        }
+    })
 
 
 
     return (
-        <div ref={modalRef}>
+        <div>
             <Modal show={showModal}>
-                <Modal.Header>
-                    <Modal.Title>Create Note</Modal.Title>
-                    <button className="modal_close_btn" onClick={hideModal}>&times;</button>
-                </Modal.Header>
-                <Modal.Body>
-                    <br />
-                    <input onChange={(e) => inputValuesOnChange(e)} className="note_title_field" maxLength={50} name="title" placeholder="Note title" type="text" />
-                    <input onChange={(e) => inputValuesOnChange(e)} className="note_descrip_field" name="description" placeholder="Note description" type="text" />
-                    <input className="is_import_checkbox" onChange={(e) => isImportantNoteCheckBox(e)} type="checkbox" /><span className="is_Important">Is Important note</span>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={hideModal} >
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={saveNote}>
-                        Save Note
-                    </Button>
-                </Modal.Footer>
+                <div ref={menuref}>
+                    <Modal.Header>
+                        <Modal.Title>Create Note</Modal.Title>
+                        <button className="modal_close_btn" onClick={hideModal}>&times;</button>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <br />
+                        <input onChange={(e) => inputValuesOnChange(e)} className="note_title_field" maxLength={50} name="title" placeholder="Note title" type="text" />
+                        <input onChange={(e) => inputValuesOnChange(e)} className="note_descrip_field" name="description" placeholder="Note description" type="text" />
+                        <input className="is_import_checkbox" onChange={(e) => isImportantNoteCheckBox(e)} type="checkbox" /><span className="is_Important">Is Important note</span>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={hideModal} >
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={saveNote}>
+                            Save Note
+                        </Button>
+                    </Modal.Footer>
+                </div>
             </Modal>
-        </div>
+        </div >
     )
 
 }

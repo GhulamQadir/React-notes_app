@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import './note-details.css'
 
@@ -129,32 +129,52 @@ import './note-details.css'
 
 function NoteDetails(props) {
 
-    let { notes, index, note, newFunc } = props.location.state
+    let { notes, index, note } = props.location.state
+
+    let [updatedNoteValues, setUpdatedInputValues] = useState({
+        updatedTitle: note.title,
+        updatedDescription: ""
+    })
 
     console.log(note)
 
 
-    // const openTitleInput = () => {
-    //     let notesArray = [...notes]
-    //     console.log("hello", notesArray[index])
-    //     notesArray[index].isEditTitle = true
-    //     notes = notesArray
-    // }
+    const openTitleInput = () => {
+        let notesArray = notes
+        notesArray[index].isEditTitle = true
+        notes = notesArray
+
+        console.log(notes)
+        // localStorage.setItem('notes', JSON.stringify(notes))
+    }
 
 
 
     const editTitleValueOnchange = (e) => {
-        console.log(e.target.value)
+        let updatedValues = updatedNoteValues
+        updatedValues.updatedTitle = e.target.value
+
+        setUpdatedInputValues(updatedValues)
+
+
+        console.log(updatedNoteValues)
     }
 
     const updateTitle = () => {
+
+        let myNotes = [...notes]
+
+        myNotes[index].title = updatedNoteValues.updatedTitle
+        myNotes[index].isEditTitle = false
+        console.log(myNotes)
+        notes = myNotes
+        localStorage.setItem('notes', JSON.stringify(notes))
     }
 
 
 
 
-    // useEffect(() => {
-
+    // useEffect(() => 
     //     localStorage.setItem('notes', JSON.stringify(props.location.state.notes))
 
     // }, [props.location.state.notes])
@@ -170,7 +190,7 @@ function NoteDetails(props) {
                 <br />
                 <br />
                 <li>{notes[index].isEditTitle ? <input type="text" onChange={(e) => editTitleValueOnchange(e)} defaultValue={note.title} /> : <h4>{note.title}</h4>}</li>
-                <li>{notes[index].isEditTitle ? <button onClick={updateTitle} className="editBtns">Update title</button> : <button onClick={newFunc} className="editBtns">edit title</button>}</li>
+                <li>{notes[index].isEditTitle ? <button onClick={updateTitle} className="editBtns">Update title</button> : <button onClick={openTitleInput} className="editBtns">edit title</button>}</li>
             </div>
             <br />
             <br />

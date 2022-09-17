@@ -34,9 +34,11 @@ function Home() {
         localStorage.setItem('notes', JSON.stringify(notesArrayUpdated))
     }
 
-    const openTitleInput = () => {
-        console.log("chal rha ha")
-    }
+    // const openTitleInput = (index) => {
+    //     let notesArray = [...notes]
+    //     notesArray[index].isEditTitle = true
+    //     setNotes(notesArray)
+    // }
 
 
 
@@ -55,11 +57,10 @@ function Home() {
             <button className="add_note_btn" onClick={openModal}><div className="add_note_btn_text">+</div></button>
 
 
-
             <CreateNoteModal notes={notes} hideModal={closeModal} showModal={isModalShow} />
 
 
-            <RenderNotes deleteNoteee={deleteNote} notes={notes} editTitleFunc={openTitleInput} />
+            <RenderNotes deleteNoteee={deleteNote} notes={notes} />
 
 
 
